@@ -51,11 +51,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   double _IMC = 0.0;
-
+  double altura = 0.0;
+  double peso = 0.0;
+/*
   get alturaController => null;
-
   get pesoController => null;
-
+*/
   void _calcIMC(double p, double a) {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -102,14 +103,18 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
           TextField(
-              controller: alturaController,
+            onChanged: (text){
+              altura = double.parse(text);
+            },
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: 'Digite sua altura em metros'
               ),
           ),
           TextField(
-              controller: pesoController,
+              onChanged: (text){
+                peso = double.parse(text);
+              },
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: 'Digite seu peso em quilos'
@@ -123,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headline4,
             ),
             RaisedButton(
-              onPressed: ()=> _calcIMC(double.parse(alturaController), double.parse(pesoController)),
+              onPressed: ()=> _calcIMC(peso, altura),
               child: Text(
               'Calcule',
               style: TextStyle(fontSize: 20)
